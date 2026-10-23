@@ -22,7 +22,10 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
+.logo{
+    text-decoration: none;
+    color: #000;
+}
 
 .header {
   text-align: center;
