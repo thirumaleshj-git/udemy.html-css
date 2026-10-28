@@ -1,47 +1,65 @@
- <head>
-  <title>Contact Us</title> 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us</title>
   <link rel="stylesheet" href="styles/contact.css">
-  </head>
+</head>
 
 <body>
   <header>
     <nav class="navbar">
       <a href="index.html"><div class="logo"><strong>LIB</strong></div></a>
-        
 
       <ul class="nav-links">
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="contact_us.html">Contact Us</a>
-        </li>
+        <li><a href="contact_us.html">Contact Us</a></li>
       </ul>
 
       <ul class="logonav">
         <li><a href="login.html" class="btn-login">Login</a></li>
-        <li><a href="getstarted" class="btn-started">Get Started</a></li>
+        <li><a href="getstarted.html" class="btn-started">Get Started</a></li>
       </ul>
     </nav>
   </header>
+
+  <div id="contact-section" class="contact-card">
+    <form id="contact-form" action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Comments / Questions</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Contact</button>
+    </form>
+  </div>
+
+  <div id="alert-box" class="alert-box">
+    Thanks! Your message has been sent.
+  </div>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const alertBox = document.getElementById("alert-box");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alertBox.classList.add("show");
+      form.reset();
+      setTimeout(() => alertBox.classList.remove("show"), 3000);
+    });
+  </script>
 </body>
-
-<div id="contact-section" class="contact-card">
-  <form action="#" method="POST">
-    <div class="form-group">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="message">Comments / Questions</label>
-      <textarea id="message" name="message" rows="6" required></textarea>
-    </div>
-
-    <button type="submit" class="btn-submit">Contact</button>
-  </form>
-</div>
- 
+</html>
