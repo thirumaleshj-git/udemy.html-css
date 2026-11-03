@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started</title>
+  <link rel="stylesheet" href="styles/get_started.css"
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+     <a href="index.html" <div class="logo"><strong>LIB</strong></div></a>
+
+      <ul class="nav-links">
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+      </ul>
+
+      <ul class="logonav">
+        <li><a href="login.html" class="btn-login">Login</a></li>
+        <li><a href="getstarted.html" class="btn-started">Get Started</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main header">
+    <h1>Sign up for lib!</h1>
+    <p>Your library catalog available anywhere, anytime.</p>
+  </div>
+
+  <div class="outer-box">
+    <h1>Select Subscription</h1>
+
+    <div class="plans">
+      <div class="inner-box1 plan-card selected" data-plan="basic">
+        <h1>Basic</h1>
+        <p>For an individual's home library. Personal use only, no ads, and we do not sell or share your data</p>
+      </div>
+
+      <div class="inner-box2 plan-card" data-plan="pro">
+        <h1>Pro🎉</h1>
+        <p>Enjoy powerful features like lending, patron management, and a customizable published library</p>
+      </div>
+
+      <div class="inner-box3">
+        <a href="contact_us.html" id="ultimateLink">
+          <h1>Ultimate</h1>
+          <p>Need multiple accounts? More than 25 managers? Need invoicing and POs? Contact Us!</p>
+        </a>
+      </div>
+    </div>
+
+    <dialog id="ultimateDialog">
+      <button class="close" id="closeBtn" type="button" aria-label="Close">×</button>
+      <h3>Leave the registration page and contact Lib about our Ultimate plan?</h3>
+      <div class="actions">
+        <a class="btn primary" href="contact_us.html">Contact Lib</a>
+        <button class="btn" id="cancelBtn" type="button">Cancel</button>
+      </div>
+    </dialog>
+
+    <div class="what-the-diff">
+      <a href="pricing.html"><h1>What's the difference</h1></a>
+    </div>
+
+    <hr>
+
+    <div class="container">
+      <h2>Account Info</h2>
+      <form class="grid">
+        <input type="hidden" id="plan" name="plan" value="basic">
+
+        <div class="field">
+          <label for="first">First Name</label>
+          <input id="first" type="text" placeholder="First Name">
+        </div>
+        <div class="field">
+          <label for="last">Last Name</label>
+          <input id="last" type="text" placeholder="Last Name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="Email">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Password">
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option selected>United States (Default)</option>
+            <option>India</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+            <option>Australia</option>
+          </select>
+        </div>
+        <div class="field" id="orgField" hidden>
+          <label for="org">Organization Name</label>
+          <input id="org" type="text" placeholder="Organization Name">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.plan-card');
+    const plan = document.getElementById('plan');
+    const orgField = document.getElementById('orgField');
+    const org = document.getElementById('org');
+
+    function setPlan(value) {
+      plan.value = value;
+      cards.forEach(c => c.classList.toggle('selected', c.dataset.plan === value));
+
+      const isPro = value === 'pro';
+      orgField.hidden = !isPro;
+      org.required = isPro;
+      if (!isPro) org.value = '';
+    }
+
+    cards.forEach(c => c.addEventListener('click', () => setPlan(c.dataset.plan)));
+    setPlan('basic');
+
+    const dialog = document.getElementById('ultimateDialog');
+    document.querySelector('.inner-box3').addEventListener('click', e => {
+      e.preventDefault();
+      dialog.showModal();
+    });
+    document.getElementById('cancelBtn').addEventListener('click', () => dialog.close());
+    document.getElementById('closeBtn').addEventListener('click', () => dialog.close());
+  </script>
+</body>
+</html>
